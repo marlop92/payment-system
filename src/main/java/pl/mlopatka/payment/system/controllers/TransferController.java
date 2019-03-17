@@ -6,6 +6,8 @@ import pl.mlopatka.payment.system.validators.TransferValidator;
 
 import java.time.ZonedDateTime;
 
+
+//TODO handle exceptions, add response statues, parse POST body, add tests
 public class TransferController {
 
     private final TransferService transferService;
