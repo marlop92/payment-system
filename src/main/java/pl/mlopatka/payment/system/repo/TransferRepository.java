@@ -4,5 +4,6 @@ import pl.mlopatka.payment.system.model.TransferCandidate;
 
 public interface TransferRepository {
 
-    void doMoneyTransfer(TransferCandidate transferCandidate);
+    void saveTransfer(TransferCandidate transferCandidate);
+    void updateBalance(TransferCandidate transferCandidate);
 }

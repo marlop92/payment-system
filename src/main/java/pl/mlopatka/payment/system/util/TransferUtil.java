@@ -1,19 +1,22 @@
 package pl.mlopatka.payment.system.util;
 
 import org.javamoney.moneta.Money;
-import pl.mlopatka.payment.system.model.Customer;
 import pl.mlopatka.payment.system.model.TransferCandidate;
-import pl.mlopatka.payment.system.model.TransferRequest;
+import pl.mlopatka.payment.system.model.entities.ExternalAccount;
+import pl.mlopatka.payment.system.model.entities.InternalAccount;
 
 import java.time.ZonedDateTime;
 
 public class TransferUtil {
 
-    public static TransferCandidate createTransferCandidate(final Customer customer, final TransferRequest transferRequest) {
-        ZonedDateTime now = ZonedDateTime.now();
-        Money amount = Money.of(transferRequest.getAmount(), transferRequest.getCurrency());
-
-        return new TransferCandidate(customer.getAccountNr(), transferRequest.getReceiverAccount(),
-                transferRequest.getTitle(), amount, now);
+    public static TransferCandidate createTransferCandidate(
+            final InternalAccount senderAccount,
+            final ExternalAccount receiverAccount,
+            final Money amount,
+            final String title,
+            final ZonedDateTime transactionDate
+    ) {
+        return new TransferCandidate(senderAccount.getAccountNumber(), receiverAccount.getAccountNumber(), title,
+                amount, transactionDate);
     }
 }

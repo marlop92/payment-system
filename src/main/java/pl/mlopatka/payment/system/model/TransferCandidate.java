@@ -3,6 +3,7 @@ package pl.mlopatka.payment.system.model;
 import org.javamoney.moneta.Money;
 
 import java.time.ZonedDateTime;
+import java.util.Objects;
 
 public class TransferCandidate {
 
@@ -59,5 +60,22 @@ public class TransferCandidate {
 
     public void setTransferDate(ZonedDateTime transferDate) {
         this.transferDate = transferDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TransferCandidate that = (TransferCandidate) o;
+        return Objects.equals(senderAccount, that.senderAccount) &&
+                Objects.equals(receiverAccount, that.receiverAccount) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(amount, that.amount) &&
+                Objects.equals(transferDate, that.transferDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(senderAccount, receiverAccount, title, amount, transferDate);
     }
 }

@@ -1,4 +1,4 @@
-package pl.mlopatka.payment.system.model;
+package pl.mlopatka.payment.system.model.requests;
 
 
 import java.math.BigDecimal;
@@ -10,6 +10,17 @@ public class TransferRequest {
     private String title;
     private BigDecimal amount;
     private String currency;
+
+    public TransferRequest(int cid, String receiverAccount, String title, BigDecimal amount, String currency) {
+        this.cid = cid;
+        this.receiverAccount = receiverAccount;
+        this.title = title;
+        this.amount = amount;
+        this.currency = currency;
+    }
+
+    public TransferRequest() {
+    }
 
     public int getCid() {
         return cid;
