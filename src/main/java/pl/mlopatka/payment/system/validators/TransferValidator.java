@@ -2,8 +2,10 @@ package pl.mlopatka.payment.system.validators;
 
 import pl.mlopatka.payment.system.model.requests.TransferRequest;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.math.BigDecimal;
 
+@ApplicationScoped
 public class TransferValidator {
 
     private static final int ACCOUNT_LENGTH = 16;
@@ -16,7 +18,9 @@ public class TransferValidator {
     private static final int EQUALITY = 0;
     private static final String ONE_OR_MORE_DIGITS = "[0-9]+";
     private static final String INVALID_CURRENCY = "Found not existing currency";
-    public static final int CURRENCY_CODE_LENGTH = 3;
+    private static final int CURRENCY_CODE_LENGTH = 3;
+
+    public TransferValidator() {}
 
     public void validate(TransferRequest transferRequest) {
         validateAmount(transferRequest.getAmount());

@@ -13,7 +13,7 @@ import pl.mlopatka.payment.system.model.entities.Customer;
 import pl.mlopatka.payment.system.model.entities.ExternalAccount;
 import pl.mlopatka.payment.system.model.entities.InternalAccount;
 import pl.mlopatka.payment.system.model.requests.TransferRequest;
-import pl.mlopatka.payment.system.repo.TransferRepository;
+import pl.mlopatka.payment.system.repo.transfer.TransferRepository;
 import pl.mlopatka.payment.system.services.account.external.ExternalAccountService;
 import pl.mlopatka.payment.system.services.account.internal.InternalAccountService;
 
