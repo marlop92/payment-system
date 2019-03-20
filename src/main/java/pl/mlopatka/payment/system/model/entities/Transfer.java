@@ -21,10 +21,10 @@ import java.util.Currency;
 public class Transfer extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "chat_seq_gen")
-    @SequenceGenerator(name = "chat_seq_gen", sequenceName = "chat_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_gen")
+    @SequenceGenerator(name = "id_seq_gen", sequenceName = "id_seq")
     @Column(name = "id", unique = true, updatable = false, nullable = false)
-    private int id;
+    private Long id;
 
     @Column(name = "sender_account", nullable = false, length = 16)
     private String senderAccount;
@@ -57,11 +57,11 @@ public class Transfer extends BaseEntity {
         this.transferDate = transferDate;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
