@@ -7,8 +7,10 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.util.Set;
 
@@ -18,10 +20,10 @@ import java.util.Set;
 public class Customer extends BaseEntity {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_gen")
+    @SequenceGenerator(name = "id_seq_gen", sequenceName = "id_seq")
     @Column(name = "id", unique = true, updatable = false, nullable = false)
-    private Integer id;
+    private Long id;
 
     @OneToMany(mappedBy = "customer")
     private Set<InternalAccount> accounts;
@@ -29,11 +31,11 @@ public class Customer extends BaseEntity {
     public Customer() {
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

@@ -8,7 +8,9 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.util.Currency;
 
@@ -18,10 +20,10 @@ import java.util.Currency;
 public class ExternalAccount extends BaseEntity {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_gen")
+    @SequenceGenerator(name = "id_seq_gen", sequenceName = "id_seq")
     @Column(name = "id", unique = true, updatable = false, nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "account_number", unique = true, updatable = false, nullable = false, length = 16)
     private String accountNumber;
@@ -37,11 +39,11 @@ public class ExternalAccount extends BaseEntity {
         this.currency = currency;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

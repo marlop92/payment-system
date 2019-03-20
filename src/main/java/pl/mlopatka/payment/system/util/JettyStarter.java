@@ -43,8 +43,6 @@ public class JettyStarter {
         servletHolder.setInitOrder(INIT_ORDER);
         servletHolder.setInitParameter(JERSEY_PACKAGES, REST_CONTROLLERS);
 
-//        servletHolder.setInitParameter("com.sun.jersey.api.json.POJOMappingFeature", "true");
-
 //        ErrorHandler errorHandler = new ErrorHandler();
 //        errorHandler.setShowStacks(true);
 //        server.addBean(errorHandler);

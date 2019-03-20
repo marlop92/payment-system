@@ -18,8 +18,8 @@ import java.util.Set;
 
 public class HibernateLifecycleUtil {
 
-    public static final String PLN = "PLN";
-    public static final String EUR = "EUR";
+    private static final String PLN = "PLN";
+    private static final String EUR = "EUR";
     private static SessionFactory sessionFactory;
 
     public static void init() {
@@ -67,33 +67,31 @@ public class HibernateLifecycleUtil {
                                                      final String secAccount, final BigDecimal firstBalance,
                                                      final BigDecimal secBalance) {
         Customer customer = new Customer();
-        InternalAccount customerPln = createInternalAccount(firstAccount, firstBalance, customer, PLN);
-        InternalAccount customerEur = new InternalAccount(customer, secAccount, secBalance,
-                Currency.getInstance(EUR));
+
+        InternalAccount customerPln = new InternalAccount(customer, firstAccount, firstBalance, Currency.getInstance(PLN));
+        InternalAccount customerEur = new InternalAccount(customer, secAccount, secBalance, Currency.getInstance(EUR));
 
         Set<InternalAccount> accounts = new HashSet<>();
         accounts.add(customerPln);
         accounts.add(customerEur);
 
+        customer.setAccounts(accounts);
         session.save(customer);
         session.save(customerPln);
         session.save(customerEur);
+
     }
 
     private static void saveCustomerWithSingleAccount( final Session session, final String firstAccount,
                                                      final BigDecimal firstBalance) {
         Customer customer = new Customer();
-        InternalAccount customerPln = createInternalAccount(firstAccount, firstBalance, customer, "PLN");
+        InternalAccount customerPln = new InternalAccount(customer, firstAccount, firstBalance,
+                Currency.getInstance(PLN));
         Set<InternalAccount> accounts = new HashSet<>();
         accounts.add(customerPln);
 
         session.save(customer);
         session.save(customerPln);
-    }
-
-    private static InternalAccount createInternalAccount(String firstAccount, BigDecimal firstBalance, Customer customer, String pln) {
-        return new InternalAccount(customer, firstAccount, firstBalance,
-                Currency.getInstance(pln));
     }
 
     public static void destroy() {

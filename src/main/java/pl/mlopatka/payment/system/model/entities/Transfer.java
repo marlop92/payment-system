@@ -7,7 +7,9 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,8 +21,8 @@ import java.util.Currency;
 public class Transfer extends BaseEntity {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "chat_seq_gen")
+    @SequenceGenerator(name = "chat_seq_gen", sequenceName = "chat_seq")
     @Column(name = "id", unique = true, updatable = false, nullable = false)
     private int id;
 

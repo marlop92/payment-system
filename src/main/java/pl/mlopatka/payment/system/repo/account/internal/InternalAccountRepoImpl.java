@@ -12,8 +12,8 @@ public class InternalAccountRepoImpl implements InternalAccountRepo {
 
     @Override
     public Optional<InternalAccount> findAccount(int cid, String currency, Session session) {
-        String hql = "from InternalAccount as account where account.cid = " + cid + " and account.currency like "
-                + currency;
+        String hql = "from InternalAccount as account where account.customer.id = " + cid + " and account.currency like "
+                + "'" + currency + "'";
         Query query = session.createQuery(hql);
         List result = query.list();
         if(result.size() > 1) {

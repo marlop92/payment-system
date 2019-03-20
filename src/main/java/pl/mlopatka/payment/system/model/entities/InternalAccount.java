@@ -8,9 +8,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Currency;
@@ -21,10 +23,10 @@ import java.util.Currency;
 public class InternalAccount extends BaseEntity {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_gen")
+    @SequenceGenerator(name = "id_seq_gen", sequenceName = "id_seq")
     @Column(name = "id", unique = true, updatable = false, nullable = false)
-    private int id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cid", nullable = false)
@@ -43,16 +45,17 @@ public class InternalAccount extends BaseEntity {
     }
 
     public InternalAccount(Customer customer, String accountNumber, BigDecimal balance, Currency currency) {
+        this.customer = customer;
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.currency = currency;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

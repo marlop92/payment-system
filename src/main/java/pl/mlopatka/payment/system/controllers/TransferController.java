@@ -36,14 +36,8 @@ public class TransferController {
     @POST
     public void transferMoney(TransferRequest transferRequest) {
         transferValidator.validate(transferRequest);
-//        transferService.transferMoney(transferRequest, LocalDateTime.now());
+        transferService.transferMoney(transferRequest, LocalDateTime.now());
     }
 
-    @GET
-    @Path("{id}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String check(@PathParam("id") String id) {
-        return "Hello " + id;
-    }
 
 }

@@ -68,6 +68,7 @@ public class TransferServiceImpl implements TransferService {
             tx.commit();
         } catch (RuntimeException ex) {
             tx.rollback();
+            throw new RuntimeException("Transaction forbidden because of: " + ex.getMessage());
         } finally {
             session.close();
         }
