@@ -2,7 +2,6 @@ package pl.mlopatka.payment.system.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.Currency;
 import java.util.Objects;
 

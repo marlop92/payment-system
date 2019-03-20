@@ -18,7 +18,6 @@ import pl.mlopatka.payment.system.util.TransferUtil;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-//TODO create single account service and fetch from internal and external when using acc nr and currency method
 public class TransferServiceImpl implements TransferService {
 
     private static final String ACCOUNT_NOT_FOUND = "Unable to find account with specified parameters";

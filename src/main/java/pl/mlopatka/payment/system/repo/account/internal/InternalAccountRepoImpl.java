@@ -15,32 +15,33 @@ public class InternalAccountRepoImpl implements InternalAccountRepo {
         String hql = "from InternalAccount as account where account.customer.id = " + cid + " and account.currency like "
                 + "'" + currency + "'";
         Query query = session.createQuery(hql);
-        List result = query.list();
+        List<?> result = query.list();
         if(result.size() > 1) {
             throw new RuntimeException("There should be only one customer with cid " + cid);
         }
 
-        return Optional.ofNullable((InternalAccount) result.get(0));
+        return result.stream().map(n -> (InternalAccount) n).findAny();
     }
 
     @Override
-    public Optional<InternalAccount> findAccount(String accountNumber, String currency, Session session) {
-        String hql = "from InternalAccount as account where account.accountNumber = " + accountNumber + " and account.currency like "
-                + currency;
+    public Optional<InternalAccount> findAccount(final String accountNumber, final String currency,
+                                                 final Session session) {
+        String hql = "from InternalAccount as account where account.accountNumber = " + accountNumber +
+                " and account.currency like " + "'" + currency + "'";
         Query query = session.createQuery(hql);
-        List result = query.list();
+        List<?> result = query.list();
         if(result.size() > 1) {
             throw new RuntimeException("There should be only one customer with accountNumber " + accountNumber);
         }
 
-        return Optional.ofNullable((InternalAccount) result.get(0));
+        return result.stream().map(n -> (InternalAccount) n).findAny();
     }
 
     @Override
     public void updateAccountBalance(String accountNumber, BigDecimal amount, Session session) {
         String hql = "from InternalAccount as account where account.accountNumber = " + accountNumber;
         Query query = session.createQuery(hql);
-        List result = query.list();
+        List<?> result = query.list();
         if(result.size() > 1) {
             throw new RuntimeException("There should be only one customer with accountNumber " + accountNumber);
         }
