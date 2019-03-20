@@ -2,10 +2,8 @@ package pl.mlopatka.payment.system.validators;
 
 import pl.mlopatka.payment.system.model.requests.TransferRequest;
 
-import javax.enterprise.context.ApplicationScoped;
 import java.math.BigDecimal;
 
-@ApplicationScoped
 public class TransferValidator {
 
     private static final int ACCOUNT_LENGTH = 16;

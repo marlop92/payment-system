@@ -1,7 +1,6 @@
 package pl.mlopatka.payment.system.util;
 
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.handler.ErrorHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.servlet.ServletContainer;
@@ -44,9 +43,11 @@ public class JettyStarter {
         servletHolder.setInitOrder(INIT_ORDER);
         servletHolder.setInitParameter(JERSEY_PACKAGES, REST_CONTROLLERS);
 
-        ErrorHandler errorHandler = new ErrorHandler();
-        errorHandler.setShowStacks(true);
-        server.addBean(errorHandler);
+//        servletHolder.setInitParameter("com.sun.jersey.api.json.POJOMappingFeature", "true");
+
+//        ErrorHandler errorHandler = new ErrorHandler();
+//        errorHandler.setShowStacks(true);
+//        server.addBean(errorHandler);
 
         return server;
     }

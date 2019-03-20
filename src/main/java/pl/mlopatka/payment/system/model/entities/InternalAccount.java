@@ -42,7 +42,7 @@ public class InternalAccount extends BaseEntity {
     public InternalAccount() {
     }
 
-    public InternalAccount(String accountNumber, BigDecimal balance, Currency currency) {
+    public InternalAccount(Customer customer, String accountNumber, BigDecimal balance, Currency currency) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.currency = currency;

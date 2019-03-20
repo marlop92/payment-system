@@ -1,9 +1,11 @@
 package pl.mlopatka.payment.system.model.requests;
 
-
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class TransferRequest {
+@XmlRootElement
+public class TransferRequest implements Serializable {
 
     private int cid;
     private String receiverAccount;
