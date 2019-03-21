@@ -18,7 +18,7 @@ public class AccountServiceImpl implements AccountService {
     private final InternalAccountRepo internalAccountRepo;
     private final ExternalAccountRepo externalAccountRepo;
 
-    public AccountServiceImpl(){
+    public AccountServiceImpl() {
         this.externalAccountRepo = new ExternalAccountRepoImpl();
         this.internalAccountRepo = new InternalAccountRepoImpl();
     }
@@ -29,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Optional<Account> findInternalAccount(int id, String currency, Session session) {
+    public Optional<Account> findInternalAccount(final int id, final String currency, final Session session) {
         Optional<InternalAccount> account = internalAccountRepo.findAccount(id, currency, session);
         Optional<Account> simpleAccount = account
                 .map(n -> new Account(n.getAccountNumber(), n.getBalance(), n.getCurrency()));
@@ -37,9 +37,9 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountType checkAccountType(String accountNumber, String currency, Session session) {
+    public AccountType checkAccountType(final String accountNumber, final String currency, final Session session) {
         Optional<InternalAccount> account = internalAccountRepo.findAccount(accountNumber, currency, session);
-        if(account.isPresent()) {
+        if (account.isPresent()) {
             return AccountType.INTERNAL;
         }
 
@@ -48,12 +48,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void updateAccount(String accountNumber, BigDecimal amount, Session session) {
+    public void updateAccount(final String accountNumber, final BigDecimal amount, final Session session) {
         internalAccountRepo.updateAccountBalance(accountNumber, amount, session);
     }
 
     @Override
-    public void externalTransfer(String accountNumber, BigDecimal amount) {
+    public void externalTransfer(final String accountNumber, final BigDecimal amount) {
         //transfer money to third party
     }
 }
