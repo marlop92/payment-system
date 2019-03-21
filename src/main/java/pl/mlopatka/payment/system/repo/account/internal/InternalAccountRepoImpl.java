@@ -52,7 +52,7 @@ public class InternalAccountRepoImpl implements InternalAccountRepo {
         String hql = "from InternalAccount as account where account.accountNumber = " + accountNumber;
         Query query = session.createQuery(hql);
         List<?> result = query.list();
-        if(result.size() > 1) {
+        if(result.size() != 1) {
             throw new InvalidResultException(INVALID_USERS_VALUES + " " + accountNumber);
         }
 
