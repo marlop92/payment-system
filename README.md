@@ -1,6 +1,6 @@
-Money transfer application working using Java 8.
+Money transfer application using Java 8.
 
-To start: just run main() method.
+To start: just run Main.main() method.
 
 Endpoints:
 
