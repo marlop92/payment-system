@@ -1,7 +1,5 @@
 package pl.mlopatka.payment.system.model.entities;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;

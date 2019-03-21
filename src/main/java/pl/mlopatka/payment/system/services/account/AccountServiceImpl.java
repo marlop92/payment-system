@@ -2,6 +2,8 @@ package pl.mlopatka.payment.system.services.account;
 
 import org.hibernate.Session;
 import pl.mlopatka.payment.system.model.Account;
+import pl.mlopatka.payment.system.model.ExternalAccountDto;
+import pl.mlopatka.payment.system.model.InternalAccountDto;
 import pl.mlopatka.payment.system.model.entities.ExternalAccount;
 import pl.mlopatka.payment.system.model.entities.InternalAccount;
 import pl.mlopatka.payment.system.repo.account.external.ExternalAccountRepo;
@@ -11,7 +13,9 @@ import pl.mlopatka.payment.system.repo.account.internal.InternalAccountRepoImpl;
 import pl.mlopatka.payment.system.util.AccountType;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class AccountServiceImpl implements AccountService {
 
@@ -55,5 +59,22 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void externalTransfer(final String accountNumber, final BigDecimal amount) {
         //transfer money to third party
+    }
+
+    @Override
+    public List<InternalAccountDto> getAllInternals() {
+        List<InternalAccount> accounts = internalAccountRepo.getAll();
+        return accounts.stream().
+                map(n -> new InternalAccountDto(n.getId(), n.getCustomer().getId(), n.getAccountNumber(),
+                        n.getBalance(), n.getCurrency().toString()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ExternalAccountDto> getAllExternals() {
+        List<ExternalAccount> accounts = externalAccountRepo.getAll();
+        return accounts.stream()
+                .map(n -> new ExternalAccountDto(n.getId(), n.getAccountNumber(), n.getCurrency().toString()))
+                .collect(Collectors.toList());
     }
 }

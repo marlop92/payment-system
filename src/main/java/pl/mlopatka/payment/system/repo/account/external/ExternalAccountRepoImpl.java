@@ -1,16 +1,19 @@
 package pl.mlopatka.payment.system.repo.account.external;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import pl.mlopatka.payment.system.exceptions.InvalidResultException;
 import pl.mlopatka.payment.system.model.entities.ExternalAccount;
 import pl.mlopatka.payment.system.model.entities.InternalAccount;
+import pl.mlopatka.payment.system.util.HibernateLifecycleUtil;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ExternalAccountRepoImpl implements ExternalAccountRepo {
 
@@ -27,6 +30,17 @@ public class ExternalAccountRepoImpl implements ExternalAccountRepo {
         }
 
         return result.stream().map(n -> (ExternalAccount) n).findAny();
+    }
+
+    @Override
+    public List<ExternalAccount> getAll() {
+        Session session = HibernateLifecycleUtil.getSessionFactory().openSession();
+        Query query = session.createQuery("from ExternalAccount");
+        List<?> result = query.list();
+        List<ExternalAccount> accounts = result.stream().map(n -> (ExternalAccount) n).collect(Collectors.toList());
+        session.close();
+
+        return accounts;
     }
 
 }

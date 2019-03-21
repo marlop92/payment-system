@@ -43,10 +43,6 @@ public class JettyStarter {
         servletHolder.setInitOrder(INIT_ORDER);
         servletHolder.setInitParameter(JERSEY_PACKAGES, REST_CONTROLLERS);
 
-//        ErrorHandler errorHandler = new ErrorHandler();
-//        errorHandler.setShowStacks(true);
-//        server.addBean(errorHandler);
-
         return server;
     }
 }
