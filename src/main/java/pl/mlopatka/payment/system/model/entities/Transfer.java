@@ -59,7 +59,7 @@ public class Transfer extends BaseEntity {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -67,7 +67,7 @@ public class Transfer extends BaseEntity {
         return senderAccount;
     }
 
-    public void setSenderAccount(String senderAccount) {
+    public void setSenderAccount(final String senderAccount) {
         this.senderAccount = senderAccount;
     }
 
@@ -75,7 +75,7 @@ public class Transfer extends BaseEntity {
         return receiverAccount;
     }
 
-    public void setReceiverAccount(String receiverAccount) {
+    public void setReceiverAccount(final String receiverAccount) {
         this.receiverAccount = receiverAccount;
     }
 
@@ -83,7 +83,7 @@ public class Transfer extends BaseEntity {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
         this.title = title;
     }
 
@@ -91,7 +91,7 @@ public class Transfer extends BaseEntity {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(final BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -99,7 +99,7 @@ public class Transfer extends BaseEntity {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(final Currency currency) {
         this.currency = currency;
     }
 
@@ -107,7 +107,7 @@ public class Transfer extends BaseEntity {
         return transferDate;
     }
 
-    public void setTransferDate(LocalDateTime transferDate) {
+    public void setTransferDate(final LocalDateTime transferDate) {
         this.transferDate = transferDate;
     }
 }

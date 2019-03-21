@@ -42,7 +42,8 @@ public class InternalAccount extends BaseEntity {
     public InternalAccount() {
     }
 
-    public InternalAccount(Customer customer, String accountNumber, BigDecimal balance, Currency currency) {
+    public InternalAccount(final Customer customer, final String accountNumber, final BigDecimal balance,
+                           final Currency currency) {
         this.customer = customer;
         this.accountNumber = accountNumber;
         this.balance = balance;
@@ -53,7 +54,7 @@ public class InternalAccount extends BaseEntity {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -61,7 +62,7 @@ public class InternalAccount extends BaseEntity {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(final Customer customer) {
         this.customer = customer;
     }
 
@@ -69,7 +70,7 @@ public class InternalAccount extends BaseEntity {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(final String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -77,7 +78,7 @@ public class InternalAccount extends BaseEntity {
         return balance;
     }
 
-    public void setBalance(BigDecimal balance) {
+    public void setBalance(final BigDecimal balance) {
         this.balance = balance;
     }
 
@@ -85,7 +86,7 @@ public class InternalAccount extends BaseEntity {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(final Currency currency) {
         this.currency = currency;
     }
 }

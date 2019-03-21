@@ -31,7 +31,7 @@ public class Customer extends BaseEntity {
     public Customer() {
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -43,7 +43,7 @@ public class Customer extends BaseEntity {
         return accounts;
     }
 
-    public void setAccounts(Set<InternalAccount> accounts) {
+    public void setAccounts(final Set<InternalAccount> accounts) {
         this.accounts = accounts;
     }
 }

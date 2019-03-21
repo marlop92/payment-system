@@ -6,7 +6,7 @@ public class ExternalAccountDto {
     private String accountNumber;
     private String currency;
 
-    public ExternalAccountDto(Long id, String accountNumber, String currency) {
+    public ExternalAccountDto(final Long id, final String accountNumber, final String currency) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.currency = currency;

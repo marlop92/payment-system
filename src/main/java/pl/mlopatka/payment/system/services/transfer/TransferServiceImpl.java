@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import pl.mlopatka.payment.system.exceptions.InvalidTransactionState;
 import pl.mlopatka.payment.system.model.Account;
 import pl.mlopatka.payment.system.model.TransferCandidate;
+import pl.mlopatka.payment.system.model.TransferDto;
+import pl.mlopatka.payment.system.model.entities.Transfer;
 import pl.mlopatka.payment.system.model.requests.TransferRequest;
 import pl.mlopatka.payment.system.repo.transfer.TransferRepository;
 import pl.mlopatka.payment.system.repo.transfer.TransferRepositoryImpl;
@@ -14,6 +16,8 @@ import pl.mlopatka.payment.system.util.TransferUtil;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TransferServiceImpl implements TransferService {
 
@@ -22,8 +26,8 @@ public class TransferServiceImpl implements TransferService {
     private static final int EQUALITY = 0;
     private static final String INVALID_RECEIVER_ACCOUNT = "Receiver of Money Transfer cannot have the same account number as a sender";
 
-    private TransferRepository transferRepository;
-    private AccountService accountService;
+    private final  TransferRepository transferRepository;
+    private final AccountService accountService;
 
     public TransferServiceImpl() {
         this.transferRepository = new TransferRepositoryImpl();
@@ -68,5 +72,14 @@ public class TransferServiceImpl implements TransferService {
             accountService.externalTransfer(transferRequest.getReceiverAccount(), transferRequest.getAmount());
         }
 
+    }
+
+    @Override
+    public List<TransferDto> getAllTransfers() {
+        List<Transfer> accounts = transferRepository.getAll();
+        return accounts.stream()
+                .map(n -> new TransferDto(n.getId(), n.getSenderAccount(), n.getReceiverAccount(),
+                        n.getTitle(), n.getAmount(), n.getCurrency().toString(), n.getTransferDate()))
+                .collect(Collectors.toList());
     }
 }
