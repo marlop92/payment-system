@@ -7,7 +7,6 @@
 //import org.mockito.Mock;
 //import org.mockito.MockitoAnnotations;
 //import pl.mlopatka.payment.system.exceptions.AccountNotFoundException;
-//import pl.mlopatka.payment.system.exceptions.InvalidBalanceException;
 //import pl.mlopatka.payment.system.model.TransferCandidate;
 //import pl.mlopatka.payment.system.model.entities.Customer;
 //import pl.mlopatka.payment.system.model.entities.ExternalAccount;

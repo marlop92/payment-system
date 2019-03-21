@@ -2,6 +2,7 @@ package pl.mlopatka.payment.system.repo.account.internal;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import pl.mlopatka.payment.system.exceptions.InvalidResultException;
 import pl.mlopatka.payment.system.model.entities.InternalAccount;
 
 import java.math.BigDecimal;
@@ -10,6 +11,8 @@ import java.util.Optional;
 
 public class InternalAccountRepoImpl implements InternalAccountRepo {
 
+    private static final String INVALID_USERS_VALUES = "Improper number of users having the same";
+
     @Override
     public Optional<InternalAccount> findAccount(int cid, String currency, Session session) {
         String hql = "from InternalAccount as account where account.customer.id = " + cid + " and account.currency like "
@@ -17,7 +20,7 @@ public class InternalAccountRepoImpl implements InternalAccountRepo {
         Query query = session.createQuery(hql);
         List<?> result = query.list();
         if(result.size() > 1) {
-            throw new RuntimeException("There should be only one customer with cid " + cid);
+            throw new InvalidResultException(INVALID_USERS_VALUES + " " + cid);
         }
 
         return result.stream().map(n -> (InternalAccount) n).findAny();
@@ -31,7 +34,7 @@ public class InternalAccountRepoImpl implements InternalAccountRepo {
         Query query = session.createQuery(hql);
         List<?> result = query.list();
         if(result.size() > 1) {
-            throw new RuntimeException("There should be only one customer with accountNumber " + accountNumber);
+            throw new InvalidResultException(INVALID_USERS_VALUES + " " + accountNumber);
         }
 
         return result.stream().map(n -> (InternalAccount) n).findAny();
@@ -43,7 +46,7 @@ public class InternalAccountRepoImpl implements InternalAccountRepo {
         Query query = session.createQuery(hql);
         List<?> result = query.list();
         if(result.size() > 1) {
-            throw new RuntimeException("There should be only one customer with accountNumber " + accountNumber);
+            throw new InvalidResultException(INVALID_USERS_VALUES + " " + accountNumber);
         }
 
         InternalAccount acc = (InternalAccount) result.get(0);
