@@ -1,6 +1,7 @@
 package pl.mlopatka.payment.system.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class InternalAccountDto {
 
@@ -37,5 +38,22 @@ public class InternalAccountDto {
 
     public String getCurrency() {
         return currency;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        InternalAccountDto that = (InternalAccountDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(cid, that.cid) &&
+                Objects.equals(accountNumber, that.accountNumber) &&
+                Objects.equals(balance, that.balance) &&
+                Objects.equals(currency, that.currency);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cid, accountNumber, balance, currency);
     }
 }
