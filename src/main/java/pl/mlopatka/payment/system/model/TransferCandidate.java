@@ -1,8 +1,8 @@
 package pl.mlopatka.payment.system.model;
 
-import org.javamoney.moneta.Money;
-
-import java.time.ZonedDateTime;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Currency;
 import java.util.Objects;
 
 public class TransferCandidate {
@@ -10,16 +10,30 @@ public class TransferCandidate {
     private String senderAccount;
     private String receiverAccount;
     private String title;
-    private Money amount;
-    private ZonedDateTime transferDate;
+    private BigDecimal amount;
+    private Currency currency;
+    private LocalDateTime transferDate;
 
     public TransferCandidate(final String senderAccount, final String receiverAccount, final String title,
-                             final Money amount, final ZonedDateTime transferDate) {
+                             final BigDecimal amount, final Currency currency, final LocalDateTime transferDate) {
         this.senderAccount = senderAccount;
         this.receiverAccount = receiverAccount;
         this.title = title;
         this.amount = amount;
+        this.currency = currency;
         this.transferDate = transferDate;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 
     public String getSenderAccount() {
@@ -46,20 +60,16 @@ public class TransferCandidate {
         this.title = title;
     }
 
-    public Money getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Money amount) {
-        this.amount = amount;
-    }
-
-    public ZonedDateTime getTransferDate() {
+    public LocalDateTime getTransferDate() {
         return transferDate;
     }
 
-    public void setTransferDate(ZonedDateTime transferDate) {
+    public void setTransferDate(LocalDateTime transferDate) {
         this.transferDate = transferDate;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
     }
 
     @Override

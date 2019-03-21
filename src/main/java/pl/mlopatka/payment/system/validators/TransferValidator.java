@@ -1,5 +1,6 @@
 package pl.mlopatka.payment.system.validators;
 
+import pl.mlopatka.payment.system.exceptions.ValidationException;
 import pl.mlopatka.payment.system.model.requests.TransferRequest;
 
 import java.math.BigDecimal;
@@ -16,7 +17,9 @@ public class TransferValidator {
     private static final int EQUALITY = 0;
     private static final String ONE_OR_MORE_DIGITS = "[0-9]+";
     private static final String INVALID_CURRENCY = "Found not existing currency";
-    public static final int CURRENCY_CODE_LENGTH = 3;
+    private static final int CURRENCY_CODE_LENGTH = 3;
+
+    public TransferValidator() {}
 
     public void validate(TransferRequest transferRequest) {
         validateAmount(transferRequest.getAmount());
@@ -27,26 +30,26 @@ public class TransferValidator {
 
     private void validateTitle(final String title) {
         if (title == null || title.length() > TITLE_MAX_LENGTH) {
-            throw new IllegalArgumentException(INVALID_TITLE_LENGTH);
+            throw new ValidationException(INVALID_TITLE_LENGTH);
         }
     }
 
     private void validateReceiverAccount(final String receiverAccount) {
         if (receiverAccount == null || receiverAccount.length() != ACCOUNT_LENGTH
                 || !receiverAccount.matches(ONE_OR_MORE_DIGITS)) {
-            throw new IllegalArgumentException(INVALID_ACCOUNT_FORMAT);
+            throw new ValidationException(INVALID_ACCOUNT_FORMAT);
         }
     }
 
     private void validateCurrency(final String currency) {
         if (currency == null || currency.length() != CURRENCY_CODE_LENGTH) {
-            throw new IllegalArgumentException(INVALID_CURRENCY);
+            throw new ValidationException(INVALID_CURRENCY);
         }
     }
 
     private void validateAmount(final BigDecimal amount) {
         if (amount == null || amount.compareTo(new BigDecimal(MIN_VALUE)) <= EQUALITY) {
-            throw new IllegalArgumentException(INVALID_AMOUNT);
+            throw new ValidationException(INVALID_AMOUNT);
         }
     }
 

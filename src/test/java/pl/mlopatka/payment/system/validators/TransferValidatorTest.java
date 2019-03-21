@@ -2,11 +2,11 @@ package pl.mlopatka.payment.system.validators;
 
 import org.apache.commons.text.RandomStringGenerator;
 import org.junit.Test;
+import pl.mlopatka.payment.system.exceptions.ValidationException;
 import pl.mlopatka.payment.system.model.requests.TransferRequest;
 
 import java.math.BigDecimal;
 
-//TODO Maybe it's worth to check exception msg when it is thrown (as some of tests can pass when error appear in any place)
 public class TransferValidatorTest {
 
     TransferValidator transferValidator = new TransferValidator();
@@ -24,7 +24,7 @@ public class TransferValidatorTest {
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValidationException.class)
     public void invalidAmountShouldThrowException() {
         //given
         BigDecimal amount = new BigDecimal(-1.0);
@@ -37,7 +37,7 @@ public class TransferValidatorTest {
         //than - expect exception
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValidationException.class)
     public void emptyAmountShouldThrowException() {
         //given
         BigDecimal amount = null;
@@ -50,7 +50,7 @@ public class TransferValidatorTest {
         //than - expect exception
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValidationException.class)
     public void invalidCurrencyShouldThrowException() {
         //given
         String currency = "INVALID_CURRENCY";
@@ -63,7 +63,7 @@ public class TransferValidatorTest {
         //than - expect exception
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValidationException.class)
     public void emptyCurrencyShouldThrowException() {
         //given
         String currency = "";
@@ -76,7 +76,7 @@ public class TransferValidatorTest {
         //than - expect exception
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValidationException.class)
     public void invalidAccountFormatShouldThrowException() {
         //given
         String accountNr = "Account412341234";
@@ -88,7 +88,7 @@ public class TransferValidatorTest {
         //than - expect exception
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValidationException.class)
     public void invalidAccountLengthShouldThrowException() {
         //given
         String accountNr = "1234";
@@ -100,7 +100,7 @@ public class TransferValidatorTest {
         //than - expect exception
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValidationException.class)
     public void emptyAccountFormatShouldThrowException() {
         //given
         String accountNr = null;
@@ -112,7 +112,7 @@ public class TransferValidatorTest {
         //than - expect exception
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValidationException.class)
     public void invalidTitleShouldThrowException() {
         //given
         String title = generateRandomString(257);
@@ -125,7 +125,7 @@ public class TransferValidatorTest {
         //than - expect exception
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValidationException.class)
     public void emptyTitleShouldThrowException() {
         //given
         String title = null;

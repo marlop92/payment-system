@@ -1,9 +1,9 @@
 package pl.mlopatka.payment.system.model.requests;
 
-
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class TransferRequest {
+public class TransferRequest implements Serializable {
 
     private int cid;
     private String receiverAccount;

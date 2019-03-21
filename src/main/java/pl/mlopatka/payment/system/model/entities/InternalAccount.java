@@ -1,26 +1,61 @@
 package pl.mlopatka.payment.system.model.entities;
 
-import org.javamoney.moneta.Money;
+import org.hibernate.annotations.GenericGenerator;
 
-public class InternalAccount {
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import java.math.BigDecimal;
+import java.util.Currency;
 
-    private int id;
+@Entity
+@Table(name = "internal_accounts")
+@Access(AccessType.FIELD)
+public class InternalAccount extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_gen")
+    @SequenceGenerator(name = "id_seq_gen", sequenceName = "id_seq")
+    @Column(name = "id", unique = true, updatable = false, nullable = false)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cid", nullable = false)
     private Customer customer;
-    private String accountNumber;
-    private Money balance;
 
-    public InternalAccount(int id, Customer customer, String accountNumber, Money balance) {
-        this.id = id;
+    @Column(name = "account_number", unique = true, updatable = false, nullable = false)
+    private String accountNumber;
+
+    @Column(name = "amount", nullable = false, precision = 14, scale = 2)
+    private BigDecimal balance;
+
+    @Column(name = "currency", nullable = false)
+    private Currency currency;
+
+    public InternalAccount() {
+    }
+
+    public InternalAccount(Customer customer, String accountNumber, BigDecimal balance, Currency currency) {
         this.customer = customer;
         this.accountNumber = accountNumber;
         this.balance = balance;
+        this.currency = currency;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -40,11 +75,19 @@ public class InternalAccount {
         this.accountNumber = accountNumber;
     }
 
-    public Money getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(Money balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 }
