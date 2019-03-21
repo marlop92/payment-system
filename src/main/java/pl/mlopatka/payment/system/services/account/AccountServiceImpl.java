@@ -23,6 +23,11 @@ public class AccountServiceImpl implements AccountService {
         this.internalAccountRepo = new InternalAccountRepoImpl();
     }
 
+    public AccountServiceImpl(InternalAccountRepo internalAccountRepo, ExternalAccountRepo externalAccountRepo) {
+        this.internalAccountRepo = internalAccountRepo;
+        this.externalAccountRepo = externalAccountRepo;
+    }
+
     @Override
     public Optional<Account> findInternalAccount(int id, String currency, Session session) {
         Optional<InternalAccount> account = internalAccountRepo.findAccount(id, currency, session);

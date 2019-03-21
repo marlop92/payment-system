@@ -22,12 +22,17 @@ public class TransferServiceImpl implements TransferService {
     private static final int EQUALITY = 0;
     private static final String INVALID_RECEIVER_ACCOUNT = "Receiver of Money Transfer cannot have the same account number as a sender";
 
-    private final TransferRepository transferRepository;
-    private final AccountService accountService;
+    private TransferRepository transferRepository;
+    private AccountService accountService;
 
     public TransferServiceImpl() {
         this.transferRepository = new TransferRepositoryImpl();
         this.accountService = new AccountServiceImpl();
+    }
+
+    public TransferServiceImpl(TransferRepository transferRepository, AccountService accountService) {
+        this.transferRepository = transferRepository;
+        this.accountService = accountService;
     }
 
     public void transferMoney(final TransferRequest transferRequest, final LocalDateTime transferDate,
