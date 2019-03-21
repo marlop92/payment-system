@@ -1,5 +1,7 @@
 package pl.mlopatka.payment.system.model;
 
+import java.util.Objects;
+
 public class ExternalAccountDto {
 
     private Long id;
@@ -22,5 +24,20 @@ public class ExternalAccountDto {
 
     public String getCurrency() {
         return currency;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ExternalAccountDto that = (ExternalAccountDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(accountNumber, that.accountNumber) &&
+                Objects.equals(currency, that.currency);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, accountNumber, currency);
     }
 }

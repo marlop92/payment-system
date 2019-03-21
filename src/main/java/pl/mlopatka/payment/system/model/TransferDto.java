@@ -2,6 +2,7 @@ package pl.mlopatka.payment.system.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class TransferDto {
 
@@ -50,5 +51,24 @@ public class TransferDto {
 
     public LocalDateTime getTransferDate() {
         return transferDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TransferDto that = (TransferDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(senderAccount, that.senderAccount) &&
+                Objects.equals(receiverAccount, that.receiverAccount) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(amount, that.amount) &&
+                Objects.equals(currency, that.currency) &&
+                Objects.equals(transferDate, that.transferDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, senderAccount, receiverAccount, title, amount, currency, transferDate);
     }
 }

@@ -1,11 +1,15 @@
 package pl.mlopatka.payment.system.services.transfer;
 
 import org.hibernate.Session;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import pl.mlopatka.payment.system.exceptions.InvalidTransactionState;
 import pl.mlopatka.payment.system.model.Account;
+import pl.mlopatka.payment.system.model.InternalAccountDto;
 import pl.mlopatka.payment.system.model.TransferCandidate;
+import pl.mlopatka.payment.system.model.TransferDto;
+import pl.mlopatka.payment.system.model.entities.Transfer;
 import pl.mlopatka.payment.system.model.requests.TransferRequest;
 import pl.mlopatka.payment.system.repo.transfer.TransferRepository;
 import pl.mlopatka.payment.system.services.account.AccountService;
@@ -13,7 +17,9 @@ import pl.mlopatka.payment.system.util.AccountType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Currency;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.mock;
@@ -131,5 +137,27 @@ public class TransferServiceTest {
         transferService.transferMoney(transferRequest, now, session);
 
         //than - expect exception
+    }
+
+    @Test
+    public void shouldReturnAllInternalAccounts() {
+        //given
+        LocalDateTime now = LocalDateTime.now();
+        List<Transfer> transfers = new ArrayList<>();
+        Transfer transfer = new Transfer("1234", "9999", "title", new BigDecimal(10.0), Currency.getInstance("PLN"), now);
+        transfer.setId(1L);
+
+        transfers.add(transfer);
+
+        List<TransferDto> expected = new ArrayList<>();
+        expected.add(new TransferDto(1L, "1234", "9999", "title", new BigDecimal(10.0), "PLN", now));
+
+        when(transferRepository.getAll()).thenReturn(transfers);
+        //when
+        List<TransferDto> result = transferService.getAllTransfers();
+
+        //than
+        Assert.assertEquals(expected, result);
+
     }
 }
