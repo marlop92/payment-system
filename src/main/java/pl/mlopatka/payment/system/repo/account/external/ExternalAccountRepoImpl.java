@@ -20,7 +20,8 @@ public class ExternalAccountRepoImpl implements ExternalAccountRepo {
     private static final String INVALID_USERS_ACCOUNTS = "Improper number of users having the same";
 
     @Override
-    public Optional<ExternalAccount> findAccount(String accountNumber, String currency, Session session) {
+    public Optional<ExternalAccount> findAccount(final String accountNumber, final String currency,
+                                                 final Session session) {
         String hql = "from ExternalAccount where accountNumber = " + accountNumber + " and currency = " +
                 "'" + currency + "'";
         Query query = session.createQuery(hql);

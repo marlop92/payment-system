@@ -10,7 +10,8 @@ public class InternalAccountDto {
     private BigDecimal balance;
     private String currency;
 
-    public InternalAccountDto(Long id, Long cid, String accountNumber, BigDecimal balance, String currency) {
+    public InternalAccountDto(final Long id, final Long cid, final String accountNumber, final BigDecimal balance,
+                              final String currency) {
         this.id = id;
         this.cid = cid;
         this.accountNumber = accountNumber;

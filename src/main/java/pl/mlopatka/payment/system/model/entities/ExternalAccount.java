@@ -43,7 +43,7 @@ public class ExternalAccount extends BaseEntity {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -51,7 +51,7 @@ public class ExternalAccount extends BaseEntity {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(final String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -59,7 +59,7 @@ public class ExternalAccount extends BaseEntity {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(final Currency currency) {
         this.currency = currency;
     }
 }

@@ -11,7 +11,8 @@ public class TransferRequest implements Serializable {
     private BigDecimal amount;
     private String currency;
 
-    public TransferRequest(int cid, String receiverAccount, String title, BigDecimal amount, String currency) {
+    public TransferRequest(final int cid, final String receiverAccount, final String title, final BigDecimal amount,
+                           final String currency) {
         this.cid = cid;
         this.receiverAccount = receiverAccount;
         this.title = title;
@@ -26,7 +27,7 @@ public class TransferRequest implements Serializable {
         return cid;
     }
 
-    public void setCid(int cid) {
+    public void setCid(final int cid) {
         this.cid = cid;
     }
 
@@ -34,7 +35,7 @@ public class TransferRequest implements Serializable {
         return receiverAccount;
     }
 
-    public void setReceiverAccount(String receiverAccount) {
+    public void setReceiverAccount(final String receiverAccount) {
         this.receiverAccount = receiverAccount;
     }
 
@@ -42,7 +43,7 @@ public class TransferRequest implements Serializable {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
         this.title = title;
     }
 
@@ -50,7 +51,7 @@ public class TransferRequest implements Serializable {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(final BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -58,7 +59,7 @@ public class TransferRequest implements Serializable {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(final String currency) {
         this.currency = currency;
     }
 }

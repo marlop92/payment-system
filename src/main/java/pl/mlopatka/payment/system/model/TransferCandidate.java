@@ -24,7 +24,7 @@ public class TransferCandidate {
         this.transferDate = transferDate;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(final BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -32,7 +32,7 @@ public class TransferCandidate {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(final Currency currency) {
         this.currency = currency;
     }
 
@@ -40,7 +40,7 @@ public class TransferCandidate {
         return senderAccount;
     }
 
-    public void setSenderAccount(String senderAccount) {
+    public void setSenderAccount(final String senderAccount) {
         this.senderAccount = senderAccount;
     }
 
@@ -48,7 +48,7 @@ public class TransferCandidate {
         return receiverAccount;
     }
 
-    public void setReceiverAccount(String receiverAccount) {
+    public void setReceiverAccount(final String receiverAccount) {
         this.receiverAccount = receiverAccount;
     }
 
@@ -56,7 +56,7 @@ public class TransferCandidate {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
         this.title = title;
     }
 
@@ -64,7 +64,7 @@ public class TransferCandidate {
         return transferDate;
     }
 
-    public void setTransferDate(LocalDateTime transferDate) {
+    public void setTransferDate(final LocalDateTime transferDate) {
         this.transferDate = transferDate;
     }
 
@@ -73,7 +73,7 @@ public class TransferCandidate {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TransferCandidate that = (TransferCandidate) o;

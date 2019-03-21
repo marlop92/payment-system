@@ -13,7 +13,7 @@ public class Account {
     public Account() {
     }
 
-    public Account(String accountNumber, BigDecimal balance, Currency currency) {
+    public Account(final String accountNumber, final BigDecimal balance, final Currency currency) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.currency = currency;
@@ -23,7 +23,7 @@ public class Account {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(final String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -31,7 +31,7 @@ public class Account {
         return balance;
     }
 
-    public void setBalance(BigDecimal balance) {
+    public void setBalance(final BigDecimal balance) {
         this.balance = balance;
     }
 
@@ -39,12 +39,12 @@ public class Account {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(final Currency currency) {
         this.currency = currency;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;

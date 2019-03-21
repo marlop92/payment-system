@@ -21,7 +21,7 @@ public class InternalAccountRepoImpl implements InternalAccountRepo {
     private static final String INVALID_USERS_VALUES = "Improper number of users having the same";
 
     @Override
-    public Optional<InternalAccount> findAccount(int cid, String currency, Session session) {
+    public Optional<InternalAccount> findAccount(final int cid, final String currency, final Session session) {
         String hql = "from InternalAccount as account where account.customer.id = " + cid + " and account.currency like "
                 + "'" + currency + "'";
         Query query = session.createQuery(hql);
@@ -48,7 +48,7 @@ public class InternalAccountRepoImpl implements InternalAccountRepo {
     }
 
     @Override
-    public void updateAccountBalance(String accountNumber, BigDecimal amount, Session session) {
+    public void updateAccountBalance(final String accountNumber, final BigDecimal amount, final Session session) {
         String hql = "from InternalAccount as account where account.accountNumber = " + accountNumber;
         Query query = session.createQuery(hql);
         List<?> result = query.list();
